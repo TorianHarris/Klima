@@ -13,3 +13,11 @@
 .nav-tabs {
   margin-bottom: 0;
 }
+
+.double-line {
+  line-height: 2;
+}
+
+.line-break {
+  white-space: pre-line;
+}
