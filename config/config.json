@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "Olen",
-    "password": "cheeseBurger99!",
-    "database": "climateRisk",
+    "username": "root",
+    "password": "password",
+    "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql"
   },
