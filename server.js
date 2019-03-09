@@ -6,18 +6,11 @@ var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// Delete this comment later
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
 
 // Routes
 require("./routes/apiRoutes")(app);
