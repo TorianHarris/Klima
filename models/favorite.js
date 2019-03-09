@@ -1,0 +1,19 @@
+module.exports = function(sequelize, DataTypes) {
+  const Favorite = sequelize.define("User", {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    zipcode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    }
+  });
+  return Favorite;
+};
