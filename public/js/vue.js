@@ -18,3 +18,27 @@ new Vue({
         }
     }
 })
+
+let signUpForm = new Vue({
+    el: "#sign-up-form",
+    data: {
+        user: {
+            firstName: null,
+            lastName: null,
+            eMail: null,
+            password: null,
+            verifyPassword: null
+        }
+    },
+    methods: {
+        sayIt: function () {
+            // axios.post('/user', this.user)
+            //   .then(function (response) {
+            //     console.log(response);
+            //   })
+            //   .catch(function (error) {
+            //     console.log(error);
+            //   });
+        }
+    }
+})
