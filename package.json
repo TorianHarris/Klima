@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "Klima",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "Climate risk assessment tool for identifying properties with a high number of severe weather events.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,6 +11,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "axios": "^0.18.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.3",
