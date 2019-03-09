@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "Klima",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "Climate risk assessment tool for identifying properties with a high number of severe weather events.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,15 +9,9 @@
     "fix": "eslint --fix .",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
-  "name": "Klima",
-  "version": "1.0.0",
-  "description": "Climate change risk assessment for properties.",
-  "scripts": {
-    "lint": "eslint",
-    "test": "echo \"Error: no test specified.\" && exit 1"
-    }
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mysql": "^2.16.0",
