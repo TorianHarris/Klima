@@ -28,14 +28,6 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
-    },
-    created: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    updated: {
-      type: DataTypes.DATE,
-      allowNull: false
     }
   });
   return User;
