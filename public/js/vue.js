@@ -25,13 +25,20 @@ let signUpForm = new Vue({
         user: {
             firstName: null,
             lastName: null,
-            eMail: null,
-            password: null,
-            verifyPassword: null
-        }
+            email: null,
+            password: null
+        },
+        verifyPassword: null,
+        errorMessage: "",
+        passVerified: false
     },
     methods: {
-        sayIt: function () {
+        verify: function () {
+            if(this.user.password !== this.verifyPassword) {
+                this.errorMessage = "Passwords do not match.";
+                return;
+            }
+            this.errorMessage = "";
             // axios.post('/user', this.user)
             //   .then(function (response) {
             //     console.log(response);
