@@ -22,3 +22,6 @@
   white-space: pre-line;
 }
 
+#username {
+  padding-right: 10px;
+}
