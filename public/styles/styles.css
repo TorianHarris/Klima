@@ -57,3 +57,6 @@ body, html {
   border-top: none;
 }
 
+#username {
+  padding-right: 10px;
+}
