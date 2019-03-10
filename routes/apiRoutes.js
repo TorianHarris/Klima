@@ -1,5 +1,4 @@
-var db = require("../models");
-
+const db = require("../models");
 const log = console.log;
 
 module.exports = function(app) {
@@ -32,7 +31,7 @@ module.exports = function(app) {
         });
     }
   });
-
+  //TODO write middleware for preventing double sign-up
   //USER sign-up
   app.post("/signup", (req, res) => {
     db.User.create(req.body).then(newUserData => {
@@ -51,7 +50,7 @@ module.exports = function(app) {
       res.json(newUserData);
     });
   });
-
+  app.delete
   // Delete an example by id
   // app.delete("/api/examples/:id", function(req, res) {
   //   db.Example.destroy({ where: { id: req.params.id } }).then(function(
