@@ -41,19 +41,18 @@ let signUpForm = new Vue({
     },
     methods: {
         verify: function () {
-            if(this.user.password !== this.verifyPassword) {
+            if (this.user.password !== this.verifyPassword) {
                 this.errorMessage = "Passwords do not match.";
                 return;
             }
             this.errorMessage = "";
-            // axios.post('/user', this.user)
-            //   .then(function (response) {
-            //     console.log(response);
-            //   })
-            //   .catch(function (error) {
-            //     console.log(error);
-            //   });
-
+            axios.post('/signup', this.user)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     }
 })

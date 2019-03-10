@@ -4,7 +4,7 @@ var path = require("path");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname,"../public/html/", "index.html"))
+    res.sendFile(path.join(__dirname,"../public/html/", "index.html"));
     // db.Example.findAll({}).then(function (dbExamples) {
     //   res.render("index", {
     //     msg: "Welcome!",
