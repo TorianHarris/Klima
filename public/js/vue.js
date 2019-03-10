@@ -1,9 +1,9 @@
 var app = new Vue({
     el: '#app',
     data: {
-      message: 'Hello Vue!'
+        message: 'Hello Vue!'
     }
-  })
+})
 
 new Vue({
     el: "#jumbotron",
@@ -14,14 +14,14 @@ new Vue({
     }
 })
 
-  new Vue({
-      el: "#forms",
-      data: {
+new Vue({
+    el: "#forms",
+    data: {
 
-      },
-      methods: {
-          sayHi: function () {
-              alert("hello")
-          }
-      }
-  })
+    },
+    methods: {
+        sayHi: function () {
+            alert("hello")
+        }
+    }
+})
