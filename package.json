@@ -1,10 +1,10 @@
 {
-  "name": "Klima",
+  "name": "klima",
   "version": "1.0.0",
   "description": "Climate risk assessment tool for identifying properties with a high number of severe weather events.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
