@@ -1,4 +1,5 @@
 var db = require("../models");
+
 const log = console.log;
 
 module.exports = function(app) {
@@ -24,7 +25,7 @@ module.exports = function(app) {
             return res.send("Invalid password");
             //TODO fidure out status code
           }
-          res.status(200).json(user);
+          res.status(200).redirect("/main");
         })
         .catch(error => {
           res.send(error);
@@ -38,13 +39,13 @@ module.exports = function(app) {
       res.json(newUserData);
     });
   });
-
+  //New Comment
   app.post("/comment", (req, res) => {
     db.Comment.create(req.body).then(newUserData => {
       res.json(newUserData);
     });
   });
-
+  //New Favorite
   app.post("/favorite", (req, res) => {
     db.Favorite.create(req.body).then(newUserData => {
       res.json(newUserData);
