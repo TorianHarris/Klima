@@ -1,5 +1,5 @@
 {
-  "name": "Klima",
+  "name": "klima",
   "version": "1.0.0",
   "description": "Climate risk assessment tool for identifying properties with a high number of severe weather events.",
   "main": "server.js",
