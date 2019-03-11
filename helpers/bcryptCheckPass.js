@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 
+
 // Check the password
 const checkPass = (password, passwordHash) => {
   return new Promise((res, rej) => {
@@ -29,8 +30,11 @@ const checkPass = (password, passwordHash) => {
           login: false
         })
       );
+
     }
   });
 };
 
+
 module.exports = { checkPass };
+
