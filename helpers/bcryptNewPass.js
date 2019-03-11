@@ -27,15 +27,4 @@ function newPass(password) {
   });
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-module.exports = {
-  newPass: newPass,
-  result: result
-};
-=======
 module.exports = { newPass };
->>>>>>> 5d97d793e264f46123ddd087853cac24dbea79cb
-=======
-module.exports = { newPass };
->>>>>>> 65487c1488040f3e12e9ef9ed4c71d931cbdccc2
