@@ -1,24 +1,37 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-let result = "";
-
 // Hash a password, on error, set login to false
-const newPass = password => {
-  bcrypt.hash(password, saltRounds, (err, hash) => {
-    if (err) {
-      throw (result = JSON.stringify({
-        login: false,
-        error: "Internal server error. Failed to hash password."
-      }));
-    } else {
-      result = JSON.stringify({ passwordHash: hash, login: true });
-    }
-    module.exports = result;
-  });
-};
 
+function newPass(password) {
+  return new Promise((res, rej) => {
+    try {
+      bcrypt.hash(password, saltRounds, (err, hash) => {
+        res(
+          JSON.stringify({
+            status: 200,
+            passwordHash: hash,
+            login: true
+          })
+        );
+      });
+    } catch (err) {
+      rej(
+        JSON.stringify({
+          status: 500,
+          login: false,
+          error: "Internal server error. Failed to hash password."
+        })
+      );
+    }
+  });
+}
+
+<<<<<<< HEAD
 module.exports = {
   newPass: newPass,
   result: result
 };
+=======
+module.exports = { newPass };
+>>>>>>> 5d97d793e264f46123ddd087853cac24dbea79cb
