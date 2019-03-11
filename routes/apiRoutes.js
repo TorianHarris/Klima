@@ -1,36 +1,26 @@
 const db = require("../models");
 const log = console.log;
+const validate = require("../helpers/validation");
 
 module.exports = function(app) {
   // userSignIn
   app.post("/signin", (req, res) => {
-    let isEmpty = false;
-    let body = req.body;
-    log(req.body);
-    for (x in body) {
-      if (body[x] === "") {
-        isEmpty = true;
-        res.send("All Fields Must Be Filled");
+    db.User.findOne({
+      where: {
+        email: req.body.email
       }
-    }
-    if (!isEmpty) {
-      db.User.findOne({
-        where: {
-          email: req.body.email
+    })
+      .then(user => {
+        if (req.body.password !== user.password) {
+          return res.send("Invalid password");
+          //TODO fidure out status code
         }
+        res.status(200).redirect("/main");
       })
-        .then(user => {
-          if (req.body.password !== user.password) {
-            return res.send("Invalid password");
-            //TODO fidure out status code
-          }
-          res.status(200).redirect("/main");
-        })
-        .catch(error => {
-          res.send(error);
-        });
-    }
-  });
+      .catch(error => {
+        res.send(error);
+      });
+  })
   //TODO write middleware for preventing double sign-up
   //USER sign-up
   app.post("/signup", (req, res) => {
@@ -50,7 +40,7 @@ module.exports = function(app) {
       res.json(newUserData);
     });
   });
-  app.delete
+  // app.delete
   // Delete an example by id
   // app.delete("/api/examples/:id", function(req, res) {
   //   db.Example.destroy({ where: { id: req.params.id } }).then(function(

@@ -18,4 +18,7 @@ const newPass = password => {
   });
 };
 
-module.exports = newPass(password);
+module.exports = {
+  newPass: newPass,
+  result: result
+};

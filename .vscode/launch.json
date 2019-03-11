@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/routes/externalApis.js"
+            "program": "${workspaceFolder}/server.js"
         }
     ]
 }
