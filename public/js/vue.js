@@ -16,10 +16,49 @@ new Vue({
 
 new Vue({
     el: "#forms",
-    data: {},
+    data: {
+        user: {
+            email: null,
+            password: null
+        },
+        verifyPassword: null,
+        errorMessage: "",
+        passVerified: false
+    },
     methods: {
         sayHi: function () {
             alert("hello");
+        }
+    }
+});
+
+let signUpForm = new Vue({
+    el: "#sign-up-form",
+    data: {
+        user: {
+            firstName: null,
+            lastName: null,
+            email: null,
+            password: null
+        },
+        verifyPassword: null,
+        errorMessage: "",
+        passVerified: false
+    },
+    methods: {
+        verify: function () {
+            if (this.user.password !== this.verifyPassword) {
+                this.errorMessage = "Passwords do not match.";
+                return;
+            }
+            this.errorMessage = "";
+            axios.post('/signup', this.user)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     }
 });

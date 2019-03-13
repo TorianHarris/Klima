@@ -1,3 +1,31 @@
+body, html {
+  height: 100%;
+}
+.background-image {
+  /* The image used */
+  background-image: url("https://mdbootstrap.com/img/Photos/Others/images/91.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mask {
+  
+  background: rgba(0, 0, 0, 0.7);
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .list-group-item {
   line-height: 2.5;
 }
@@ -20,6 +48,13 @@
 
 .line-break {
   white-space: pre-line;
+}
+
+.form-input {
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
 }
 
 #username {
