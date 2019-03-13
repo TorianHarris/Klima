@@ -14,7 +14,7 @@ bcryptNewPass
 
     So, the code should probably look something like this:
     res = JSON.parse(res);
-    if (res.status === 200) {
+     {
         Insert username, res.passwordHash, etc... into the database
         if (res.login) {
             // Generate token & cookie here...
