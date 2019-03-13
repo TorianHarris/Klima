@@ -26,6 +26,7 @@ module.exports = function(app) {
         response
           .json({
             message: "Success",
+            token: req.token,
             authData
           })
           .sendFile(path.join((__dirname, "../public/html", "main.html")));
