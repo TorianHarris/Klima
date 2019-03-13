@@ -40,11 +40,25 @@ describe("GET /api/examples", function() {
 
         expect(responseBody[0])
           .to.be.an("object")
+<<<<<<< HEAD
           .that.includes({ text: "First Example", description: "First Description" });
 
         expect(responseBody[1])
           .to.be.an("object")
           .that.includes({ text: "Second Example", description: "Second Description" });
+=======
+          .that.includes({
+            text: "First Example",
+            description: "First Description"
+          });
+
+        expect(responseBody[1])
+          .to.be.an("object")
+          .that.includes({
+            text: "Second Example",
+            description: "Second Description"
+          });
+>>>>>>> 5341fd8767e7c0d96bc5a3b71743599977c66ffc
 
         // The `done` function is used to end any asynchronous tests
         done();
