@@ -1,56 +1,74 @@
-var db = require("../models");
+const db = require("../models");
 const log = console.log;
+const validate = require("../helpers/validation");
+const bcrypt = require("../helpers/bcrypt");
+const jwt = require("jsonwebtoken");
+const noaa = require("./externalApis");
 
 module.exports = function(app) {
   // userSignIn
-  app.post("/signin", (req, res) => {
-    let isEmpty = false;
-    let body = req.body;
-    log(req.body);
-    for (x in body) {
-      if (body[x] === "") {
-        isEmpty = true;
-        res.send("All Fields Must Be Filled");
+  app.post("/signin", (req, response) => {
+    db.User.findOne({
+      where: {
+        email: req.body.email
       }
-    }
-    if (!isEmpty) {
-      db.User.findOne({
-        where: {
-          email: req.body.email
-        }
-      })
-        .then(user => {
-          if (req.body.password !== user.password) {
-            return res.send("Invalid password");
-            //TODO fidure out status code
+    }).then(user => {
+      bcrypt
+        .checkPass(req.body.password, user.password)
+        .then(res => {
+          if (res.status === 200) {
+            jwt.sign({ user }, "secretkey", (err, token) => {
+              return response
+                .status(200)
+                .json({ token })
+                .redirect("/");
+            });
+            //TODO write code for storing and checking cookies
+          } else {
+            return response.json("Something went wrong");
           }
-          res.status(200).json(user);
         })
         .catch(error => {
-          res.send(error);
+          respose.json(error);
         });
-    }
-  });
-
-  //USER sign-up
-  app.post("/signup", (req, res) => {
-    db.User.create(req.body).then(newUserData => {
-      res.json(newUserData);
     });
   });
-
+  //TODO write middleware for preventing double sign-up
+  //USER sign-up
+  app.post("/signup", (req, response) => {
+    bcrypt.newPass(req.body.password).then(function(res) {
+      log(res);
+      if (res.status === 200) {
+        db.User.create({
+          email: req.body.email,
+          password: res.passwordHash,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName
+        }).then(newUserData => {
+          return response.json(newUserData);
+        });
+      } else {
+        response.json({ error: "Something Went Wrong" });
+      }
+    });
+  });
+  //New Comment
   app.post("/comment", (req, res) => {
     db.Comment.create(req.body).then(newUserData => {
       res.json(newUserData);
     });
   });
-
+  //New Favorite
   app.post("/favorite", (req, res) => {
     db.Favorite.create(req.body).then(newUserData => {
       res.json(newUserData);
     });
   });
 
+  app.get("/climatedata", (req, response) => {
+    noaa.getLatLong(req.body.zipcode, req, response, noaa.getNoaa);
+  });
+  // app.delete
   // Delete an example by id
   // app.delete("/api/examples/:id", function(req, res) {
   //   db.Example.destroy({ where: { id: req.params.id } }).then(function(
