@@ -52,6 +52,17 @@ module.exports = function(app) {
       }
     });
   });
+  //Get all comments
+  app.get("/comment/:zip", (req, res) => {
+    let zip = req.params.zip;
+    db.Comment.findAll({
+      where: {
+        zipcode: zip
+      }
+    }).then(dbComments => {
+      res.json(dbComments);
+    });
+  });
   //New Comment
   app.post("/comment", (req, res) => {
     db.Comment.create(req.body).then(newUserData => {
