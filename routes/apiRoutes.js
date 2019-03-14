@@ -45,7 +45,19 @@ module.exports = function(app) {
           firstName: req.body.firstName,
           lastName: req.body.lastName
         }).then(newUserData => {
-          return response.json(newUserData);
+          if (res.status === 200) {
+            jwt.sign({ newUserData }, "secretkey", (err, token) => {
+              return response
+                .status(200)
+                .json({
+                  token,
+                  email: newUserData.email
+                })
+                .redirect("/");
+            });
+          } else {
+            return response.status(404);
+          }
         });
       } else {
         response.json({ error: "Something Went Wrong" });
