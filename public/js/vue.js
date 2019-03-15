@@ -32,7 +32,7 @@ new Vue({
     passVerified: false
   },
   methods: {
-    verify: function() {
+    onSubmit: function() {
       if (this.user.password !== this.verifyPassword) {
         this.errorMessage = "Passwords do not match.";
         return;
@@ -41,6 +41,14 @@ new Vue({
       axios
         .post("/signup", this.user)
         .then(function(response) {
+          console.log("Bearer " + response.data.token);
+          axios
+            .get("/main", {
+              headers: { Authorization: "Bearer " + response.data.token }
+            })
+            .then(function(response) {
+              console.log(response);
+            });
           console.log(response);
         })
         .catch(function(error) {

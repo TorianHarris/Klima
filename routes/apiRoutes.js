@@ -45,11 +45,34 @@ module.exports = function(app) {
           firstName: req.body.firstName,
           lastName: req.body.lastName
         }).then(newUserData => {
-          return response.json(newUserData);
+          if (res.status === 200) {
+            jwt.sign({ newUserData }, "secretkey", (err, token) => {
+              return response
+                .status(200)
+                .json({
+                  token,
+                  email: newUserData.email
+                })
+                .redirect("/main");
+            });
+          } else {
+            return response.status(404).json({ message: "Failed at line 59" });
+          }
         });
       } else {
-        response.json({ error: "Something Went Wrong" });
+        response.json({ error: "Something Went Wrong 62" });
       }
+    });
+  });
+  //Get all comments
+  app.get("/comment/:zip", (req, res) => {
+    let zip = req.params.zip;
+    db.Comment.findAll({
+      where: {
+        zipcode: zip
+      }
+    }).then(dbComments => {
+      res.json(dbComments);
     });
   });
   //New Comment
