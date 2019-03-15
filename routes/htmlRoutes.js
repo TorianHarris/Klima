@@ -19,7 +19,7 @@ module.exports = function(app) {
   app.get("/main", validate.verifyToken, function(req, response) {
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
-        response.send(403);
+        response.send(403).json({ message: "GET main failed" });
       } else {
         response
           .json({

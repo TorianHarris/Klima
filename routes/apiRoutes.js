@@ -53,14 +53,14 @@ module.exports = function(app) {
                   token,
                   email: newUserData.email
                 })
-                .redirect("/");
+                .redirect("/main");
             });
           } else {
-            return response.status(404);
+            return response.status(404).json({ message: "Failed at line 59" });
           }
         });
       } else {
-        response.json({ error: "Something Went Wrong" });
+        response.json({ error: "Something Went Wrong 62" });
       }
     });
   });
