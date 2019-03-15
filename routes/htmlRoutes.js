@@ -2,7 +2,6 @@ var db = require("../models");
 var path = require("path");
 const validate = require("../helpers/validation");
 const jwt = require("jsonwebtoken");
-
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -18,10 +17,9 @@ module.exports = function(app) {
 
   // Load main page
   app.get("/main", validate.verifyToken, function(req, response) {
-    //FIXME fix secretkey is undefined
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
-        response.send(403);
+        response.send(403).json({ message: "GET main failed" });
       } else {
         response
           .json({
@@ -34,8 +32,8 @@ module.exports = function(app) {
     });
   });
 
-//   app.get("/main/comments/:zipcode", (req, response) => {
-//  });
+  //   app.get("/main/comments/:zipcode", (req, response) => {
+  //  });
   // Render 404 page for any unmatched routes
   // app.get("*", function(req, res) {
   //   res.render("404");

@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "EatzaPizza420",
+    "password": "password",
     "database": "climaterisk",
     "host": "localhost",
     "dialect": "mysql"
