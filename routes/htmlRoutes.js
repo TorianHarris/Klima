@@ -17,21 +17,29 @@ module.exports = function(app) {
 
   // Load main page
   app.get("/main", validate.verifyToken, function(req, response) {
+    //TODO investigate usin parameters and conditionals to secure the routes
+    let isVaild = true;
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
         response.send(403).json({ message: "GET main failed" });
       } else {
-        response
-          .json({
-            message: "Success",
-            token: req.token,
-            authData
-          })
-          .sendFile(path.join((__dirname, "../public/html", "main.html")));
+        isValid = true;
       }
     });
+    if (isVaild) {
+      response.status(200).json({
+        message: "Success!!!",
+        redirectUrl: "/main/loggedin/"
+      });
+    }
   });
 
+  app.get("/main/:*", (req, response) => {
+    let localPath = path.join(__dirname, "../public/html/", "main.html");
+    response.sendFile(localPath);
+
+    // response.status(403).json({ message: "No Token Present" });
+  });
   //   app.get("/main/comments/:zipcode", (req, response) => {
   //  });
   // Render 404 page for any unmatched routes
