@@ -81,6 +81,17 @@ module.exports = function(app) {
       res.json(newUserData);
     });
   });
+  //Get all favorites
+  app.get("/favorite/:uuid", (req, res) => {
+    let uuid = req.params.uuid;
+    db.Favorite.findAll({
+      where: {
+        userId: uuid
+      }
+    }).then(dbComments => {
+      res.json(dbComments);
+    });
+  });
   //New Favorite
   app.post("/favorite", (req, res) => {
     db.Favorite.create(req.body).then(newUserData => {
