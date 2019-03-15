@@ -17,7 +17,6 @@ module.exports = function(app) {
 
   // Load main page
   app.get("/main", validate.verifyToken, function(req, response) {
-    //FIXME fix secretkey is undefined
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
         response.send(403);
