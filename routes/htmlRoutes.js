@@ -22,12 +22,12 @@ module.exports = function(app) {
         response.send(403).json({ message: "GET main failed" });
       } else {
         response
-          .json({
-            message: "Success",
-            token: req.token,
-            authData
-          })
-          .sendFile(path.join((__dirname, "../public/html", "main.html")));
+          // .json({
+          //   message: "Success",
+          //   token: req.token,
+          //   authData
+          // })
+          .sendFile(path.join(__dirname, "../public/html/", "main.html"));
       }
     });
   });
