@@ -4,7 +4,7 @@
   "description": "Climate risk assessment tool for identifying properties with a high number of severe weather events.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon cocktail-server.js",
+    "start": "node server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
