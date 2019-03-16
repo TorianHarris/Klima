@@ -122,10 +122,9 @@
                 <div class="tab-content" style="height: 300px;" id="myTabContent">
                     <div class="tab-pane fade" id="sign-in" role="tabpanel" aria-labelledby="sign-in">
                         <br>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ut illo vitae, libero eum
-                            consequatur eligendi mollitia cupiditate soluta corporis nesciunt, illum animi, minus
-                            obcaecati ad
-                            itaque autem! Blanditiis, doloremque?</p>
+                        <h2 id="riskInfo">
+
+                        </h2>
                         <br>
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
                                 class="far fa-star"></i></button>
@@ -163,8 +162,59 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../js/mainpage.js" type="text/javascript">
+    <script type="text/javascript">
         // Rendering Map
+        let searchString = "Atlanta, GA";
+            L.mapquest.key = "Pfd7TG4aGomOwmZm7Pyd30Zm8WHMITIa";
+
+            let map = L.mapquest.map("map", {
+                center: [0, 0],
+                layers: L.mapquest.tileLayer("map"),
+                zoom: 14
+            });
+            //Map searching with Search-bar
+            L.mapquest.geocoding().geocode(searchString);
+
+            const getComments = searchQuery => {
+                axios
+                    .get("/comment", {
+                        params: {
+                            zipcode: searchQuery
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response.data);
+                    });
+            };
+            const getClimate = searchQuery => {
+                axios
+                    .get("/climatedata", {
+                        params: {
+                            zipcode: searchQuery
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response.data.COUNT);
+                        let count = parseInt(response.data.COUNT);
+                        $("#riskInfo").text("");
+                        if (response >= 3000&& response<3999) {
+                            return $("#riskInfo").text("Med Risk")
+                        } else if (response >= 4000) {
+                            return $("#riskInfo").text("High Risk")
+                        } else {
+                            return $("#riskInfo").text("High Risk")
+                        }
+                    });
+            };
+
+            $("#mapquestSearchBox").on("click", function (event) {
+                event.preventDefault();
+                var searchString = $("#searchInput").val();
+                getClimate(searchString);
+                getComments(searchString);
+            });
+            L.mapquest.geocoding().geocode(searchString);
+
         
     </script>
 
