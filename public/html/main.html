@@ -198,12 +198,12 @@
                         console.log(response.data.COUNT);
                         let count = parseInt(response.data.COUNT);
                         $("#riskInfo").text("");
-                        if (response >= 3000&& response<3999) {
+                        if (response >= 3000 && response<3999) {
                             return $("#riskInfo").text("Med Risk")
                         } else if (response >= 4000) {
                             return $("#riskInfo").text("High Risk")
                         } else {
-                            return $("#riskInfo").text("High Risk")
+                            return $("#riskInfo").text("Low Risk")
                         }
                     });
             };
@@ -213,8 +213,10 @@
                 var searchString = $("#searchInput").val();
                 getClimate(searchString);
                 getComments(searchString);
+                L.mapquest.geocoding().geocode(searchString);
             });
             L.mapquest.geocoding().geocode(searchString);
+          
 
     </script>
 
