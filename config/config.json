@@ -1,18 +1,14 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "",
-=======
     "password": "password",
->>>>>>> 86386004589f7d0a574c77cba2f21e90baa38b48
     "database": "climaterisk",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "",
+    "password": "password",
     "database": "climaterisk",
     "host": "localhost",
     "dialect": "mysql",
