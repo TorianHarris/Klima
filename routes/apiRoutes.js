@@ -65,20 +65,21 @@ module.exports = function(app) {
     });
   });
   //Get all comments
-  app.get("/comment/:zip", (req, res) => {
-    let zip = req.params.zip;
+  app.get("/comments", (req, res) => {
+    let zip = req.params.zipcode;
     db.Comment.findAll({
       where: {
         zipcode: zip
       }
     }).then(dbComments => {
+      console.log(dbComments);
       res.json(dbComments);
     });
   });
   //New Comment
   app.post("/comment", (req, res) => {
-    db.Comment.create(req.body).then(newUserData => {
-      res.json(newUserData);
+    db.Comment.create(req.body).then(newComment => {
+      res.json(newComment);
     });
   });
   //Get all favorites
@@ -99,7 +100,8 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/climatedata/:zipcode", (req, response) => {
+  app.get("/climatedata", (req, response) => {
+    console.log(req.params);
     noaa.getLatLong(req.params.zipcode, req, response, noaa.getNoaa);
   });
   // app.delete
