@@ -16,6 +16,7 @@ module.exports = function(app) {
   });
 
   app.get("/main", validate.verifyToken, function(req, response) {
+    //TODO investigate usin parameters and conditionals to secure the routes
     let isVaild = true;
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
@@ -35,5 +36,14 @@ module.exports = function(app) {
   app.get("/main/loggedin", (req, response) => {
     let localPath = path.join(__dirname, "../public/html/", "main.html");
     response.sendFile(localPath);
+
+    // response.status(403).json({ message: "No Token Present" });
   });
+  app.get("/main/comments/:zipcode", (req, response) => {
+    console.log(response);
+  });
+  // Render 404 page for any unmatched routes
+  // app.get("*", function(req, res) {
+  //   res.render("404");
+  // });
 };

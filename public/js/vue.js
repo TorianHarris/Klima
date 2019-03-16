@@ -4,7 +4,7 @@ new Vue({
     header: `Climate Warnings.
         For the Areas You Want to See.`,
     description:
-      "This project uses National Oceanic and Atmospheric Administration (NOAA) data to calculate a climate risk score based on user input. Additonally, users can save their favorite locations and revisit them in the future by logging into the website. A comment feature is also provided to allow users to crowdsource other sustainability data."
+      "The global climate system will continue to change for centuries because of both past and future emissions of greenhouse gases. Heat waves, floods and other impacts on ecosystems, human health and economy are likely to become more severe in the coming decades.This app is designed to help you understand what areas are at the highest risk."
   }
 });
 

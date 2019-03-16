@@ -14,17 +14,18 @@ describe("GET /api/examples", function() {
   // & delete all examples from the db
   beforeEach(function() {
     request = chai.request(server);
-    return db.sequelize.sync({ force: true });
+    return db.sequelize.sync({
+      force: true
+    });
   });
 
   it("should find all examples", function(done) {
     // Add some examples to the db to test with
-    db.Example.bulkCreate([
-      { text: "First Example", description: "First Description" },
-      { text: "Second Example", description: "Second Description" }
+    db.User.bulkCreate([
+   
     ]).then(function() {
       // Request the route that returns all examples
-      request.get("/api/examples").end(function(err, res) {
+      request.get("/signin").end(function(err, res) {
         var responseStatus = res.status;
         var responseBody = res.body;
 

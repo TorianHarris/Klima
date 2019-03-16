@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 var request;
 
-describe("POST /api/examples", function() {
+describe("POST /signin", function() {
   // Before each test begins, create a new request server for testing
   // & delete all examples from the db
   beforeEach(function() {

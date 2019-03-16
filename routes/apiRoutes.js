@@ -81,6 +81,17 @@ module.exports = function(app) {
       res.json(newUserData);
     });
   });
+  //Get all favorites
+  app.get("/favorite/:uuid", (req, res) => {
+    let uuid = req.params.uuid;
+    db.Favorite.findAll({
+      where: {
+        userId: uuid
+      }
+    }).then(dbComments => {
+      res.json(dbComments);
+    });
+  });
   //New Favorite
   app.post("/favorite", (req, res) => {
     db.Favorite.create(req.body).then(newUserData => {
@@ -88,8 +99,8 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/climatedata", (req, response) => {
-    noaa.getLatLong(req.body.zipcode, req, response, noaa.getNoaa);
+  app.get("/climatedata/:zipcode", (req, response) => {
+    noaa.getLatLong(req.params.zipcode, req, response, noaa.getNoaa);
   });
   // app.delete
   // Delete an example by id
