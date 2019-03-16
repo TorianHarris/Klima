@@ -12,7 +12,7 @@ The purpose of this project is to help people make educated choices about where 
 
 ## Try Klima for Yourself
 
-// Link to deployed site will go here when site is deployed
+https://project-klima.herokuapp.com/
 
 ## Upcoming feature additions
 
