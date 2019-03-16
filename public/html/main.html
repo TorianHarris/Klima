@@ -212,8 +212,10 @@
                 var searchString = $("#searchInput").val();
                 getClimate(searchString);
                 getComments(searchString);
+                L.mapquest.geocoding().geocode(searchString);
             });
             L.mapquest.geocoding().geocode(searchString);
+          
 
         
     </script>
