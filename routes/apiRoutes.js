@@ -65,7 +65,7 @@ module.exports = function(app) {
     });
   });
   //Get all comments
-  app.get("/comments", (req, res) => {
+  app.get("/comment/:zipcode", (req, res) => {
     let zip = req.params.zipcode;
     db.Comment.findAll({
       where: {
@@ -99,8 +99,11 @@ module.exports = function(app) {
   });
   //New Favorite
   app.post("/favorite", (req, res) => {
-    db.Favorite.create(req.body).then(newUserData => {
-      res.json(newUserData);
+    db.Favorite.create({
+      userId: req.query.uuid,
+      zipcode: req.query.zipcode
+    }).then(newFavorite => {
+      res.json(newFavorite);
     });
   });
 
