@@ -174,7 +174,7 @@
             event.preventDefault();
             var searchString = $("#searchInput").val();
             axios
-               .get(`/climatedata?${searchString}`)
+               .get(`/climatedata/${searchString}`)
                 .then(function (response) {
                     L.mapquest.geocoding().geocode(searchString);
                 });
