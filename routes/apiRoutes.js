@@ -78,7 +78,11 @@ module.exports = function(app) {
   });
   //New Comment
   app.post("/comment", (req, res) => {
-    db.Comment.create(req.body).then(newComment => {
+    db.Comment.create({
+      userId: req.query.uuid,
+      zipcode: req.query.zipcode,
+      comment: req.query.comment
+    }).then(newComment => {
       res.json(newComment);
     });
   });
