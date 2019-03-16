@@ -15,27 +15,25 @@ module.exports = function(app) {
     // });
   });
 
-  // Load main page
   app.get("/main", validate.verifyToken, function(req, response) {
+    let isVaild = true;
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
         response.send(403).json({ message: "GET main failed" });
       } else {
-        response
-          // .json({
-          //   message: "Success",
-          //   token: req.token,
-          //   authData
-          // })
-          .sendFile(path.join(__dirname, "../public/html/", "main.html"));
+        isValid = true;
       }
     });
+    if (isVaild) {
+      response.status(200).json({
+        message: "Success!!!",
+        redirectUrl: "/main/loggedin"
+      });
+    }
   });
 
-  //   app.get("/main/comments/:zipcode", (req, response) => {
-  //  });
-  // Render 404 page for any unmatched routes
-  // app.get("*", function(req, res) {
-  //   res.render("404");
-  // });
+  app.get("/main/loggedin", (req, response) => {
+    let localPath = path.join(__dirname, "../public/html/", "main.html");
+    response.sendFile(localPath);
+  });
 };

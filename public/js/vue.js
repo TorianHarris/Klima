@@ -4,7 +4,7 @@ new Vue({
     header: `Climate Warnings.
         For the Areas You Want to See.`,
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      "This project uses National Oceanic and Atmospheric Administration (NOAA) data to calculate a climate risk score based on user input. Additonally, users can save their favorite locations and revisit them in the future by logging into the website. A comment feature is also provided to allow users to crowdsource other sustainability data."
   }
 });
 
@@ -14,6 +14,38 @@ new Vue({
   methods: {
     sayHi: function() {
       alert("hello");
+    }
+  }
+});
+
+new Vue({
+  el: "#sign-in-form",
+  data: {
+    user: {
+      email: null,
+      password: null
+    }
+  },
+  methods: {
+    onSubmit: function() {
+      axios.get("/main/loggedin").then(function() {
+        window.location.href = "/main/loggedin";
+      });
+      // .post("/signin", this.user)
+      // .then(function(response) {
+      //   console.log(response);
+      //   axios
+      //     .get("", {
+      //       headers: { Authorization: "Bearer " + response.data.token }
+      //     })
+      //     .then(function(response) {
+      //       //window.location.href = "/main/loggedin";
+      //     });
+      //   console.log(response);
+      // })
+      // .catch(function(error) {
+      //   console.log(error);
+      // });
     }
   }
 });
@@ -47,7 +79,64 @@ new Vue({
               headers: { Authorization: "Bearer " + response.data.token }
             })
             .then(function(response) {
-              console.log(response);
+              window.location.href = response.data.redirectUrl;
+            });
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+  }
+});
+
+new Vue({
+  el: "#sign-in-modal",
+  data: {
+    user: {
+      email: null,
+      password: null
+    }
+  },
+  methods: {
+    onSubmit: function() {
+      axios.get("/main/loggedin").then(function() {
+        window.location.href = "/main/loggedin";
+      });
+    }
+  }
+});
+
+new Vue({
+  el: "#sign-up-modal",
+  data: {
+    user: {
+      firstName: null,
+      lastName: null,
+      email: null,
+      password: null
+    },
+    verifyPassword: null,
+    errorMessage: "",
+    passVerified: false
+  },
+  methods: {
+    onSubmit: function() {
+      if (this.user.password !== this.verifyPassword) {
+        this.errorMessage = "Passwords do not match.";
+        return;
+      }
+      this.errorMessage = "";
+      axios
+        .post("/signup", this.user)
+        .then(function(response) {
+          console.log("Bearer " + response.data.token);
+          axios
+            .get("/main", {
+              headers: { Authorization: "Bearer " + response.data.token }
+            })
+            .then(function(response) {
+              window.location.href = response.data.redirectUrl;
             });
           console.log(response);
         })
