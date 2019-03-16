@@ -29,19 +29,19 @@ module.exports = function(app) {
     if (isVaild) {
       response.status(200).json({
         message: "Success!!!",
-        redirectUrl: "/main/loggedin/"
+        redirectUrl: "/main/loggedin"
       });
     }
   });
 
-  app.get("/main/:*", (req, response) => {
+  app.get("/main/loggedin", (req, response) => {
     let localPath = path.join(__dirname, "../public/html/", "main.html");
     response.sendFile(localPath);
 
     // response.status(403).json({ message: "No Token Present" });
   });
-  //   app.get("/main/comments/:zipcode", (req, response) => {
-  //  });
+    app.get("/main/comments/:zipcode", (req, response) => {
+   });
   // Render 404 page for any unmatched routes
   // app.get("*", function(req, res) {
   //   res.render("404");

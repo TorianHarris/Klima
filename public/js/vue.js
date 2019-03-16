@@ -42,7 +42,6 @@ new Vue({
         .post("/signup", this.user)
         .then(function(response) {
           console.log("Bearer " + response.data.token);
-          localStorage.setItem("token", response.data.token);
           axios
             .get("/main", {
               headers: { Authorization: "Bearer " + response.data.token }
