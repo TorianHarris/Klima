@@ -42,6 +42,7 @@ body, html {
 
 .nav-tabs {
   margin-bottom: 0;
+  border-bottom: none
 }
 
 .double-line {
@@ -69,11 +70,12 @@ body, html {
 
 .nav-link{
   color: rgb(87, 87, 87) !important;
+  border-bottom: white 1px solid !important;
 }
 
 .nav-link.active {
   color: white !important;
   background: rgba(46, 46, 46, 0.3) !important;
-  border-bottom: none; 
+  border-bottom: none!important; 
 }
 

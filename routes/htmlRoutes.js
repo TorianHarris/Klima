@@ -15,7 +15,6 @@ module.exports = function(app) {
     // });
   });
 
-  // Load main page
   app.get("/main", validate.verifyToken, function(req, response) {
     //TODO investigate usin parameters and conditionals to secure the routes
     let isVaild = true;
@@ -40,8 +39,9 @@ module.exports = function(app) {
 
     // response.status(403).json({ message: "No Token Present" });
   });
-    app.get("/main/comments/:zipcode", (req, response) => {
-   });
+  app.get("/main/comments/:zipcode", (req, response) => {
+    console.log(response);
+  });
   // Render 404 page for any unmatched routes
   // app.get("*", function(req, res) {
   //   res.render("404");
